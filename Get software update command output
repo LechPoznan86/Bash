@@ -1,0 +1,4 @@
+#!/bin/sh
+list=$(softwareupdate -l)
+echo "<result>$list</result>"
+exit 0
