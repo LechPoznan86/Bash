@@ -1,0 +1,7 @@
+if [ -e /Library/Application\ Support/JAMF/Waiting\ Room/ ]
+    then
+        echo "Removing cached packages"
+        rm -rf /Library/Application\ Support/JAMF/Waiting\ Room/
+    else
+        echo "Files Already Removed"
+fi
