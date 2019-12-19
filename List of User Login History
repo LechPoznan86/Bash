@@ -1,0 +1,30 @@
+#!/bin/bash
+
+allLocalAccts=$(dscl . list /Users UniqueID | awk '$2>500 {print $1}')
+
+for userAcct in $allLocalAccts; do
+Echo $userAcct
+
+    if [[ $(dseditgroup -o checkmember -m $userAcct admin) =~ "yes" ]]; then
+    Echo $userAcct
+
+        if [[ $(dscl . read /Users/$userAcct OriginalAuthenticationAuthority 2>/dev/null) != "" ]]; then
+
+             lastCommand+=$"
+         -------Domain Admin User ::$userAcct::----------
+         "; 
+             lastCommand+=$(last| grep $userAcct)  
+        Echo $userAcct  
+
+        else 
+
+            lastCommand+=$"
+        -------Local Admin User ::$userAcct::----------
+        ";
+       lastCommand+=$(last| grep $userAcct)
+       Echo $userAcct
+       fi
+   fi
+done
+
+echo "<result>$(printf '%s\n' "$lastCommand")</result>"
