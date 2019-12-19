@@ -1,0 +1,12 @@
+#!/bin/sh
+
+########## variable-ing ##########
+
+#status=$(grep -r '("app.update.auto' ~/Library/Application\ Support/Firefox/Profiles/)
+status=$(mdfind -onlyin / -name prefs.js)
+
+########## main process ##########
+
+echo "<result>$status</result>"
+
+exit 0
