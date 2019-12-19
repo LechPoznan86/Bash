@@ -1,0 +1,9 @@
+#this script grabs the last 15 login logs from machines
+#!/bin/sh
+lastUser=$(last -15)
+
+if [ $lastUser == "" ]; then
+	echo "<result>No logins</result>"
+else
+	echo "<result>$lastUser</result>"
+fi
